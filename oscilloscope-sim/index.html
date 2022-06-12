@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<link rel="icon" type="image/x-icon" href="../favicon-32x32.png">
+	<link rel="stylesheet" type="text/css" href="styles.css">
+	<link rel="stylesheet" type="text/css" href="../simulator.css">
+
+
+</head>
+
+<body>
+	<div id="main-parent" style="display: flex; flex-direction: column; flex-wrap: nowrap; margin-left: 20%; margin-right: 20%;">
+		<h1 style="">Interactive Basic Oscilloscope</h1>
+		<div id="js-parent"
+			style="display: flex; justify-content: space-between; ">
+			<div id="demo" style="margin-top: 20px;"></div>
+			<div class="clearfix" id="ui-container" style="margin-top: 20px; margin-left: 5x;"></div>
+		</div>
+
+		<div id="notes">
+			<p>
+				An oscilloscope is a useful tool for anyone working with electrical signals because it provides a visual representation of the signal's shape, or waveform. This allows you to measure properties of the wave, such as amplitude or frequency.</p>
+			
+			<p>
+				The initial signal above is a 200Hz sine wave, which has an amplitude of 5 volts. The frequency of this wave can be adjusted by using the "Input Wave Frequency" slider.
+				(You can also choose to display a square wave.)
+			</p>
+			
+			<p>
+				If you are browsing using the latest version of Google Chrome, the input dropdown box allows you to select "live input".  This will take data from any microphone connected to your computer and display the live audio data. (Different microphones send different voltages to the computer, so for consistency we have normalised the input so the raw input signal will always be limited to somewhere between -5 and +5 volts.)
+			</p>
+			
+			<p>
+				Since waveforms come in a wide variety of shapes, amplitudes and frequencies, oscilloscopes need to have a number of controls to adjust the display of the waveform so it can comfortably fit inside the viewport.
+			</p>
+			
+		</div>
+	</div>
+
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+	<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
+	<script src="../js/all.js"></script>
+	<script src="../js/lib/AudioContextMonkeyPatch.js"></script>
+	<script src="demo.js"></script>
+
+	<script>
+		//ASSET SERVING
+		var assetPath = "http://localhost:8000";
+
+		$(document).trigger({
+			type: "scriptLoaded"
+		});
+	</script>
+
+</body>
+
+</html>
