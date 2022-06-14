@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Least Square Regression Line</title>
+	<link rel="icon" type="image/x-icon" href="../favicon-32x32.png">
+	<link rel="stylesheet" type="text/css" href="styles.css">
+	<link rel="stylesheet" type="text/css" href="../simulator.css">
+
+
+</head>
+
+<body>
+	<div id="main-parent"
+		style="display: flex; flex-direction: column; flex-wrap: nowrap; margin-left: 9%; margin-right: 9%;">
+		<h1 style="">Regression Line Simulator</h1>
+		<div id="js-parent"
+			style="display: flex; justify-content: center; flex-direction: row; flex-wrap: nowrap;">
+			<div id="demo" style="margin-top: 20px;"></div>
+			<div class="clearfix" id="ui-container" style="margin-top: 20px; top: 0; height: 50%;"></div>
+		</div>
+
+		<div id="notes" style="display: flex; justify-content: center; flex-direction: column;">
+			<p>
+				If you have a set of data consisting of x and y values, you will often want to determine
+				if there is a relationship between the two variables.
+				Plotting the data on a scatter plot can give you an idea of how x and y are related. If
+				you can draw a straight line on the graph that passes through (or at least close to)
+				most of the data points, then x and y have a linear relationship.
+			</p>
+
+			<p>
+				The simplest way to draw a linear trendline is to do it by eye, but this is not the most
+				accurate. Instead, we use an approach called <em>linear regression</em>. This involves
+				coming up with a mathematical formula that tells us exactly how well the trendline
+				matches the data. As with all straight lines, the trendline will have a formula of
+			</p>
+
+			\[ y = mx + c \]
+
+			<p>
+				Where \( m \) is the gradient and \( c \) is the y-intercept. If we label our data
+				points with a number, like \( (x_1, y_1), (x_2, y_2) ... (x_n, y_n) \). At each of these
+				points, we can calculate how far away the trendline value is from the actual value, and
+				we call this value the <em>error</em>.
+			</p>
+
+			\[ y_n - (mx_n + c) \]
+
+			<p>
+				Now, for a number of reasons which are a bit beyond the scope of this article, we are
+				really interested in the squared error. You can read about the reasons <a
+					href='http://www.benkuhn.net/squared'>here</a>.
+			</p>
+
+			\[ (y_n - (mx_n + c))^2 \]
+
+			<p>
+				We do this for all our data points, add all the results together and this gives us the
+				squared error of the line. The best trendline is the straight line which has the
+				smallest squared error.
+				Instead of trying lots of different trendlines in a trial and error fashion, we can use
+				the technique of differentiation to find the values of \( m \) and \( c \) which
+				minimise the squared error, and this results in the gradient being
+			</p>
+
+			\[ m = \frac{\bar{x}\bar{y} - \bar{xy}}{(\bar{x})^2 - \bar{x^2}} \]
+
+			<p>
+				Where \( \bar{x}\bar{y} \) is the mean of \(x\) multiplied by the mean of \(y\), \(
+				\bar{xy} \) is the mean of x multiplied by y, \( \bar{x}^2 \) is the square of the mean
+				of \(x\), and \(\bar{x^2}\) is the mean of \( x^2 \). The y-intercept is given by
+			</p>
+
+			\[ c = \bar{y} - m\bar{x} \]
+
+			<p>
+				The demo above allows you to enter a list of \( (x, y) \) data points (each new point
+				should be on a new line), and once the calculate button is pressed, the demo will draw a
+				scatter plot of the data and compute the gradient and y-intercept of the best fit line.
+				One additional number calculated is that of \( R^2 \) which is a measure of how much the
+				change in y is related to the change in x. If all the data lies on a straight line \(
+				R^2 \) will have a value of exactly 1. If however, there does not appear to be any
+				correlation between x and y and the data points are scattered randomly, then \( R^2 \)
+				will be close to 0.
+			</p>
+		</div>
+	</div>
+
+
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="../js/all.js"></script>
+	<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
+	<script id="MathJax-script" async="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+	<script type="text/javascript">
+		window.MathJax = {
+			tex: {
+				tags: 'ams'
+			}
+		};
+	</script>
+	<script src="../js/demoConcat.js"></script>
+	<script src="../js/lib/d3.js"></script>
+	<script src="demo.js"></script>
+
+	<script>
+		//ASSET SERVING
+		var assetPath = "https://s3-us-west-2.amazonaws.com/academo-assets";
+
+		$(document).trigger({
+			type: "scriptLoaded"
+		});
+	</script>
+
+</body>
+
+</html>
